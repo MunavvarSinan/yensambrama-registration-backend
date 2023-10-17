@@ -75,27 +75,27 @@ router.post('/', async (req, res) => {
                 await existingMember.save();
             }
         }
-        const registrationData = {
-            teamName: teamName && teamName,
-            totalMembers: membersArray.length,
-            event: eventId,
-            // members: membersArray.map((member: any) => member._id), // Save member IDs
-            members: membersArray, // Save member IDs
-        };
         const collection = mongoose_1.default.connection.db.collection('event_details');
         // Fetch the event details from the collection
         const eventIdObjectID = new mongoose_1.default.Types.ObjectId(eventId);
         const event = await collection.findOne({ _id: eventIdObjectID });
+        console.log(membersArray);
         if (event) {
-            const eventName = event.name; // Replace 'name' with the actual field in your event document
+            const eventName = event.name;
+            const registrationData = {
+                teamName: teamName && teamName,
+                totalMembers: membersArray.length,
+                event: eventName,
+                members: membersArray.map((member) => member._id), // Save member IDs
+            };
             // Continue with creating and saving the registration
             const registration = new registrationModel_1.default(registrationData);
             await registration.save().then((data) => {
                 const transporter = nodemailer_1.default.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: 'munavvarsinan987@gmail.com',
-                        pass: 'lbcibaxivctdhjbd',
+                        user: 'yensambrama2023.yit@gmail.com',
+                        pass: 'crguvsucxicwobzj',
                     }
                 });
                 // Define your HTML content with the event name
@@ -115,7 +115,7 @@ router.post('/', async (req, res) => {
         `;
                 for (const member of membersArray) {
                     const mailOptions = {
-                        from: 'munavvarsinan987@gmail.com',
+                        from: 'yensambrama2023.yit@gmail.com',
                         to: member.email,
                         subject: 'Registration Confirmation',
                         html: htmlContent.replace('[Participant\'s Name]', member.name),
@@ -140,5 +140,19 @@ router.post('/', async (req, res) => {
     catch (error) {
         console.error(error);
         return res.json({ error: 'Internal Server Error' });
+    }
+});
+router.get('/:id', async (req, res) => {
+    try {
+        const eventId = req.params.id;
+        const eventIdObjectID = new mongoose_1.default.Types.ObjectId(eventId);
+        // Find all registrations related to the given event ID
+        const registrations = await registrationModel_1.default.find({ event: eventIdObjectID });
+        console.log(registrations);
+        res.json(registrations);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
