@@ -86,7 +86,7 @@ router.post('/', async (req, res) => {
                 teamName: teamName && teamName,
                 totalMembers: membersArray.length,
                 event: eventName,
-                members: membersArray.map((member) => member._id), // Save member IDs
+                members: membersArray, // Save member IDs
             };
             // Continue with creating and saving the registration
             const registration = new registrationModel_1.default(registrationData);
