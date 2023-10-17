@@ -95,7 +95,7 @@ router.post('/', async (req, res) => {
             const registrationData = {
                 teamName: teamName && teamName,
                 totalMembers: membersArray.length,
-                event: eventName, // Add the event ID to the events array
+                event: eventId, // Add the event ID to the events array
                 members: membersArray, // Save member IDs
             };
             // Continue with creating and saving the registration
