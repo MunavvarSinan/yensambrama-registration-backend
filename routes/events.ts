@@ -145,6 +145,7 @@ router.post('/', async (req, res) => {
         } else {
             // Handle the case where the event with the given ID is not found
             console.error('Event not found.');
+            return res.status(404).json({ error: 'Event not found' });
         }
 
         return res.json({ message: 'Registration successfull' });
