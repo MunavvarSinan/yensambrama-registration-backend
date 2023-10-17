@@ -11,10 +11,20 @@ const registrationSchema = new mongoose_1.default.Schema({
         type: mongoose_1.default.Schema.Types.ObjectId,
         ref: 'event_details'
     },
-    members: [{
-            type: mongoose_1.default.Schema.Types.ObjectId,
-            ref: 'members', // Reference the members collection
-        }],
+    members: [
+        {
+            name: String,
+            email: String,
+            phone: String,
+            year: String,
+            branch: String,
+            totalEventsRegistered: { type: Number, default: 0 },
+        }
+    ]
+    // members: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'members', // Reference the members collection
+    // }],
 });
 const RegisterModel = mongoose_1.default.model('registrations', registrationSchema);
 exports.default = RegisterModel;

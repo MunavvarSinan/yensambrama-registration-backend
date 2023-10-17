@@ -79,7 +79,8 @@ router.post('/', async (req, res) => {
             teamName: teamName && teamName,
             totalMembers: membersArray.length,
             event: eventId,
-            members: membersArray.map((member) => member._id), // Save member IDs
+            // members: membersArray.map((member: any) => member._id), // Save member IDs
+            members: membersArray, // Save member IDs
         };
         const collection = mongoose_1.default.connection.db.collection('event_details');
         // Fetch the event details from the collection
