@@ -12,7 +12,6 @@ const port = process.env.PORT || 8000;
 
 const corsOptions = {
     origin: ['https://yensambrama.vercel.app', 'http://localhost:3000'],
-    credentials: true,
 };
 app.use(cors(corsOptions)); // Enable CORS for all routes
 

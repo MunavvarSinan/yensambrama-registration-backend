@@ -12,7 +12,6 @@ const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
 const corsOptions = {
     origin: ['https://yensambrama.vercel.app', 'http://localhost:3000'],
-    credentials: true,
 };
 app.use((0, cors_1.default)(corsOptions)); // Enable CORS for all routes
 app.use(body_parser_1.default.json()); // Parse JSON request bodies
