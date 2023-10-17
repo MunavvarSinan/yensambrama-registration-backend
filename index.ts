@@ -7,8 +7,6 @@ import bodyParser from 'body-parser';
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
-// Define your frontend domain
-const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 
 
 

@@ -10,8 +10,6 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
-// Define your frontend domain
-const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 const corsOptions = {
     origin: ['https://yensambrama.vercel.app', 'http://localhost:3000'],
     credentials: true,

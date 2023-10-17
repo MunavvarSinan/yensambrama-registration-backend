@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const registrationSchema = new mongoose.Schema({
-    team: String,
+    teamName: String,
     totalMembers: Number,
     event: {
         type: mongoose.Schema.Types.ObjectId,
