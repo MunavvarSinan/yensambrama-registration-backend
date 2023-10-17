@@ -7,20 +7,10 @@ const registrationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'event_details'
     },
-    members: [
-        {
-            name: String,
-            email: String,
-            phone: String,
-            year: String,
-            branch: String,
-            totalEventsRegistered: { type: Number, default: 0 },
-        }
-    ]
-    // members: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'members', // Reference the members collection
-    // }],
+    members: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'members', // Reference the members collection
+    }],
 });
 
 const RegisterModel = mongoose.model('registrations', registrationSchema);
