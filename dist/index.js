@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000;
 // Define your frontend domain
 const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 const corsOptions = {
-    origin: 'https://yensambrama.vercel.app',
+    origin: ['https://yensambrama.vercel.app', 'http://localhost:3000'],
     credentials: true,
 };
 app.use((0, cors_1.default)(corsOptions)); // Enable CORS for all routes
