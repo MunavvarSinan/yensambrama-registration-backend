@@ -6,8 +6,20 @@ import cors from 'cors';
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
+// Define your frontend domain
+const allowedOrigins = ['http://localhost:3000'];
 
-app.use(cors());
+const corsOptions = {
+    origin: function (origin: any, callback: any) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
+
+app.use(cors(corsOptions));
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to Express & TypeScript Server');
 });
