@@ -25,12 +25,6 @@ app.use((0, cors_1.default)(corsOptions));
 app.get('/', (req, res) => {
     res.send('Welcome to Express & TypeScript Server');
 });
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", allowedOrigins);
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 (0, conn_1.connectDB)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
