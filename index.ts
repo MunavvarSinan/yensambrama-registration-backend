@@ -13,7 +13,7 @@ const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app
 
 
 const corsOptions = {
-    origin: 'https://yensambrama.vercel.app',
+    origin: ['https://yensambrama.vercel.app', 'http://localhost:3000'],
     credentials: true,
 };
 app.use(cors(corsOptions)); // Enable CORS for all routes
