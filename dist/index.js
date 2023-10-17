@@ -14,7 +14,9 @@ const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app
 const corsOptions = {
     origin: allowedOrigins,
 };
-app.use((0, cors_1.default)(corsOptions));
+app.use((0, cors_1.default)({
+    origin: "https://yensambrama.vercel.app/"
+}));
 app.get('/', (req, res) => {
     res.send('Welcome to Express & TypeScript Server');
 });
