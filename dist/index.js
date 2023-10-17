@@ -12,14 +12,7 @@ const port = process.env.PORT || 8000;
 // Define your frontend domain
 const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: allowedOrigins,
 };
 app.use((0, cors_1.default)(corsOptions));
 app.get('/', (req, res) => {
