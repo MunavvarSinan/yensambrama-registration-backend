@@ -10,7 +10,6 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const collection = mongoose.connection.db.collection('event_details');
-        console.log(collection);
         // Retrieve data from the collection
         const data = await collection.find({}).toArray();
         res.json(data);

@@ -11,7 +11,6 @@ exports.router = router;
 router.get('/', async (req, res) => {
     try {
         const collection = mongoose_1.default.connection.db.collection('event_details');
-        console.log(collection);
         // Retrieve data from the collection
         const data = await collection.find({}).toArray();
         res.json(data);
