@@ -7,22 +7,22 @@ const express_1 = __importDefault(require("express"));
 const conn_1 = require("./db/conn");
 const events_1 = require("./routes/events");
 const cors_1 = __importDefault(require("cors"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
 // Define your frontend domain
 const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 const corsOptions = {
-    origin: allowedOrigins,
+    origin: 'https://yensambrama.vercel.app/',
+    credentials: true,
 };
-app.use((0, cors_1.default)({
-    origin: "https://yensambrama.vercel.app/"
-}));
+app.use((0, cors_1.default)(corsOptions)); // Enable CORS for all routes
+app.use(body_parser_1.default.json()); // Parse JSON request bodies
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.send('Welcome to Express & TypeScript Server');
 });
 (0, conn_1.connectDB)();
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/api/event', events_1.router);
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

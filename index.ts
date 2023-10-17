@@ -3,26 +3,28 @@ import express, { Express, Request, Response, Application } from 'express';
 import { connectDB } from './db/conn';
 import { router as eventRoutes } from './routes/events';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
 // Define your frontend domain
 const allowedOrigins = ['http://localhost:3000', 'https://yensambrama.vercel.app/'];
 
-const corsOptions = {
-    origin: allowedOrigins,
-};
 
-app.use(cors({
-    origin: "https://yensambrama.vercel.app/"
-}));
+
+const corsOptions = {
+    origin: 'https://yensambrama.vercel.app/',
+    credentials: true,
+};
+app.use(cors(corsOptions)); // Enable CORS for all routes
+
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to Express & TypeScript Server');
 });
 
 connectDB();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/event', eventRoutes);
 app.listen(port, () => {
