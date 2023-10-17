@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "scripts": {
     "build": "tsc",
     "start": "pnpm run build && node dist/index.js",
