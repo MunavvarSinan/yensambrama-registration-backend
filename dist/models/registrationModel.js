@@ -15,7 +15,7 @@ const registrationSchema = new mongoose_1.default.Schema({
         {
             name: String,
             email: String,
-            phone: String,
+            phone_number: String,
             year: String,
             branch: String,
             totalEventsRegistered: { type: Number, default: 0 },

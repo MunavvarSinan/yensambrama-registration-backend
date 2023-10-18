@@ -65,8 +65,11 @@ router.post('/', async (req, res) => {
                 // If the member doesn't exist, create a new member.
                 memberData.totalEventsRegistered = 0;
                 existingMember = new MemberModel_1.default(memberData);
+                existingMember.phone_number = memberData.phone_number;
+                existingMember.save();
             }
             // Save the member (if needed)
+            existingMember.phone_number = memberData.phone_number;
             await existingMember.save();
             membersArray.push(existingMember);
             // Increment the totalEventsRegistered count if the event type is not 'Open'

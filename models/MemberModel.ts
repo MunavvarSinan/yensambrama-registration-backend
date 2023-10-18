@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const memberSchema = new mongoose.Schema({
     name: String,
     email: String,
-    phone: String,
+    phone_number: String,
     year: String,
     branch: String,
     totalEventsRegistered: { type: Number, default: 0 },
