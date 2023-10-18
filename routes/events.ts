@@ -64,25 +64,24 @@ router.post('/', async (req, res) => {
         const membersArray = [] as any
         for (const memberData of members) {
             let existingMember = await MemberModel.findOne({ email: memberData.email });
+
             if (!existingMember) {
                 // If the member doesn't exist, create a new member.
                 memberData.totalEventsRegistered = 0;
                 existingMember = new MemberModel(memberData);
                 existingMember.phone_number = memberData.phone_number;
-                existingMember.save();
             }
-
-            // Save the member (if needed)
-            existingMember.phone_number = memberData.phone_number;
-            await existingMember.save();
-            membersArray.push(existingMember);
 
             // Increment the totalEventsRegistered count if the event type is not 'Open'
             if (eventType !== 'Open') {
                 existingMember.totalEventsRegistered += 1;
-                await existingMember.save();
             }
+
+            // Save the member (if needed)
+            await existingMember.save();
+            membersArray.push(existingMember);
         }
+
 
 
         const collection = mongoose.connection.db.collection('event_details');

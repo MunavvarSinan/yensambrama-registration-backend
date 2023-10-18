@@ -11,12 +11,14 @@ const eventDetailsSchema = new mongoose_1.default.Schema({
     theme: String,
     student_coordinators: [
         {
-            type: mongoose_1.default.Types.ObjectId
+            name: String,
+            phone_number: String,
         }
     ],
     faculty_coordinators: [
         {
-            type: mongoose_1.default.Types.ObjectId
+            name: String,
+            phone_number: String,
         }
     ],
     rules: [

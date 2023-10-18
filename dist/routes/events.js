@@ -66,17 +66,14 @@ router.post('/', async (req, res) => {
                 memberData.totalEventsRegistered = 0;
                 existingMember = new MemberModel_1.default(memberData);
                 existingMember.phone_number = memberData.phone_number;
-                existingMember.save();
             }
-            // Save the member (if needed)
-            existingMember.phone_number = memberData.phone_number;
-            await existingMember.save();
-            membersArray.push(existingMember);
             // Increment the totalEventsRegistered count if the event type is not 'Open'
             if (eventType !== 'Open') {
                 existingMember.totalEventsRegistered += 1;
-                await existingMember.save();
             }
+            // Save the member (if needed)
+            await existingMember.save();
+            membersArray.push(existingMember);
         }
         const collection = mongoose_1.default.connection.db.collection('event_details');
         // Fetch the event details from the collection

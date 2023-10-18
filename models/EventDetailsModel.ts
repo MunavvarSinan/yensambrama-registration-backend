@@ -7,12 +7,14 @@ const eventDetailsSchema = new mongoose.Schema({
     theme: String,
     student_coordinators: [
         {
-            type: mongoose.Types.ObjectId
+            name: String,
+            phone_number: String,
         }
     ],
     faculty_coordinators: [
         {
-            type: mongoose.Types.ObjectId
+            name: String,
+            phone_number: String,
         }
     ],
     rules: [
